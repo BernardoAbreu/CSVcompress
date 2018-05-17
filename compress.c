@@ -106,18 +106,18 @@ void compress_file2(char* input_file, char* output_file){
 }
 
 void compress_file(){
-    int end = 0;
+    int num1, num2, end = 0;
 
     while(!end){ 
-        num1 = fgetc(fp_in);
+        num1 = getc(stdin);
         if(num1 == EOF){
             break;
         }
         if((char)num1 == 'e'){
-            num1 = fgetc(fp_in);
+            num1 = getc(stdin);
         }
 
-        num2 = fgetc(fp_in);
+        num2 = getc(stdin);
 
         if(num2 == EOF){
             num2 = '$';
@@ -125,10 +125,10 @@ void compress_file(){
         }
 
         if((char)num2 == 'e'){
-            num2 = fgetc(fp_in);
+            num2 = getc(stdin);
         }
 
-        fputc(compress((char)num1, (char)num2), fp_out);
+        putc(compress((char)num1, (char)num2), stdout);
     }
 
 }
@@ -224,8 +224,8 @@ int main(){
     // char* new_file = "test2.txt";
     // compress_file2(input_file, output_file);
     // decompress_file2(output_file, new_file);
-    compress_file(input_file, output_file);
-    decompress_file(output_file, new_file);
+    compress_file();
+    decompress_file();
 
 
     return 0;
